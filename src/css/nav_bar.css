@@ -1,0 +1,99 @@
+body {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#header {
+	display: table;
+	padding: 20px;
+	width: 97%;
+	background-color: #778899;
+	position: -webkit-sticky;
+    position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+#navBar {
+    /* margin-left: 300px; */
+	background-color: #778899;
+	float: right;
+}
+
+#navBar ul {
+	margin: 0px;
+    padding: 3px;
+	/* margin-left: 390px; */
+}
+
+#navBar ul li {
+	margin-right: 20px;
+    font-weight: bold;
+	list-style: none; /* Gets rid of list bullet points */
+	text-align: center;
+	
+	/* Add a proper display property: We want the stats to have 
+	a height, but also appear side-by-side */
+
+	display: inline-block;
+		
+}
+
+#navBar ul li a {
+	padding: .5rem, .1rem;
+	color: white;
+	font-size: 20px;
+    text-decoration: None;
+}
+
+#navBar ul li a:hover {
+	color: #262673;
+    text-decoration: underline;
+}
+
+.active {
+	text-decoration: underline;
+}
+
+#logo {
+	padding-left: 50px;
+	/* Cover the subtitle but move nav bar down*/
+	/* padding-bottom: 10px; */
+}
+
+.circleL{
+	height: 60px;
+	width: 60px;
+	box-sizing: border-box;
+	border: 40px solid #63A69F;
+	opacity:0.5;
+	border-radius: 50%;
+	float:left;
+}
+
+.circleR{
+	display:inline-block;
+	position:relative;
+	left: -30px;
+	height: 60px;
+	width: 60px;
+	box-sizing: border-box;
+	border: 40px solid #F2594B;
+	opacity:0.5;
+	border-radius: 50%;
+	float:left;
+}
+
+.logoText{
+	display:inline-block;
+	position:relative;
+	top:30px;
+	left:-140px;
+}
+
+.logoText span{
+	font-family:monospace;
+	font-size:20px;
+	font-weight: 900;
+	color: white;
+}
