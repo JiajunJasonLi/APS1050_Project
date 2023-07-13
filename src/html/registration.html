@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pet Shop</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/nav_bar.css">
+	<link rel="stylesheet" type="text/css" href="css/margin.css">
+
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<!-- header-->
+	<header id='header'>
+		<!-- Logo -->
+		<div id='logo'>
+			<div class="circleL"></div> <div class="circleR"></div>
+			<div class="logoText"><span>daily</span> <span>life</span></div>
+			<div class="subtitle"><span >My Daily ToDo List</span></div>
+		</div>
+		<!-- Nav bar -->
+		<div id='navBar'>
+			<ul>
+				<li><a href='../index.html'>Home</a></li>
+				<li><a class='active'href=''>Registration</a></li>
+				<li><a href='#'>Election</a></li>
+				<li><a href='#'>Feature x</a></li>
+				<li><a href='#'>Feature y</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- Need a better Naming-->
+	<div id='blockThree'>
+		<!-- Block for friend list-->
+		<!-- Removing friend list from large event block-->
+		<div id='friendList'>
+			<!-- Title -->
+			<div class='blockTitle'>
+				Friends
+			</div>
+			<!-- Search Bar-->
+			<div class="searchBlock">
+				<input type="text" class="searchBar" id="friendInput" placeholder="Search Friends">
+			</div>
+			<!-- Friends -->
+			<div class='blockList'>
+				<button class='accordion'>
+					Friend 1
+				</button>
+				<a href='community.html' class='blockLink'>
+					<div class='panel'>
+						<!-- The event user is doning or next event user is going to do-->
+						<div> CSC309 Project Meeting </div>
+					</div>
+				</a>
+			</div>
+		</div>
+		
+		<!-- User Picture-->
+		<div id="profileSettingBlock" class='leftMargin20'>
+			<h1>User Setting</h1>
+			<div id='userPicture'>
+				<img id="avatar" src="resource/profile2.jpg">
+			</div>
+
+        	<div id='settingBlock' class='leftMargin20'> 
+				<form id='modifyUserForm'>
+					<!-- The placeholder needs to be the actual value of the user-->
+					<div class='inputRow'>
+						<div class="inputBlock">
+							<div>First Name:</div>
+							<input type='text' id='firstNameInput' placeholder="First Name" required>
+						</div>
+						<div class="inputBlock leftMargin40">
+							<div>Last Name:</div>
+							<input type='text' id='lastNameInput' placeholder="Last Name" required>
+						</div> 
+					</div>
+					<div class='inputRow' >
+						<div class="inputBlock">
+							<div>Email:</div>
+							<input type='text' id='emailInput' placeholder="Email" required>
+						</div>  
+						<div class="inputBlock leftMargin40">
+							<div>Birthday:</div>
+							<input type='date' id='birthdayInput' placeholder="Birthday" required>
+						</div>
+					</div>
+					<div class="inputRow">
+						<div class="inputBlockLarge">
+							<div>Bio:</div>
+							<!-- <textarea class='formControl' placeholder="description">
+
+							</textarea> -->
+							<input class='inputLarge' maxlength="140" type='text' id='bioInput' placeholder="Descritpion">
+						</div>
+					</div>
+				</form>
+					<button class='btn'>submit</button>
+					<!-- To submit use this
+						<button type='submit' form='modifyUserForm' value='Submit' class='btn'>submit</button>
+					-->
+			</div>
+		</div>
+		</div>
+</body>
+</html>
