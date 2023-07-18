@@ -27,46 +27,55 @@
 			<ul>
 				<li><a href='../index.html'>Home</a></li>
 				<li><a class='active' href='registration.html'>Registration</a></li>
-				<li><a href='html/election.html'>Election</a></li>
-				<li><a href='#'>Feature x</a></li>
-				<li><a href='#'>Feature y</a></li>
+				<li><a href='election.html'>Election</a></li>
+				<li><a href='history.html'>Adoption History</a></li>
 			</ul>
 		</div>
 	</header>
 
 	<!-- User Picture-->
-	<div id="registration">
-		<h1>Registration</h1>
+	<!-- <div id="registration"> -->
+	<h1>Registration</h1>
 
-        <div id='settingBlock'> 
-			<form id='registrationForm'>
-				<div class="inputBlock">
-					<div>Name:</div>
-					<input type='text' id='nameInput' placeholder="Name" required>
-				</div>
-				<div class="inputBlock">
-					<div>Breed:</div>
-					<input type='text' id='breedInput' placeholder="Breed" required>
-				</div>
-				<div class="inputBlock">
-					<div>Age:</div>
-					<input type='number' id='ageInput' placeholder="Age" required>
-				</div> 
-				<!-- <div class="inputBlock">
-					<div>Birthday:</div>
-					<input type='date' id='birthdayInput' placeholder="Birthday" required>
-				</div> -->
-				<div class="inputBlock">
-					<div>Location:</div>
-					<input class='text' id='locationInput' placeholder="Location" required>
-				</div>
-			</form>
+    <div id='settingBlock'> 
+		<form id='registrationForm'>
+			<div class="inputBlock">
+				<div>Name:</div>
+				<input type='text' id='nameInput' placeholder="Name" required>
+			</div>
+			<div class="inputBlock">
+				<div>Breed:</div>
+				<input type='text' id='breedInput' placeholder="Breed" required>
+			</div>
+			<div class="inputBlock">
+				<div>Age:</div>
+				<input type='number' min="0" max="100" id='ageInput' placeholder="Age" required>
+			</div> 
+			<!-- <div class="inputBlock">
+				<div>Birthday:</div>
+				<input type='date' id='birthdayInput' placeholder="Birthday" required>
+			</div> -->
+			<div class="inputBlock">
+				<div>Vaccination:</div>
+				<select id="vaccinationSelect">
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+			</div>
 
-				<button class='btn'>submit</button>
-				<!-- To submit use this
-					<button type='submit' form='modifyUserForm' value='Submit' class='btn'>submit</button>
-				-->
-		</div>
+			<div class="inputBlock">
+				<div>Neutered:</div>
+				<select id="neuterSelect">
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+			</div>
+			
+		</form>
+		<button class='btn'>submit</button>
+			<!-- To submit use this
+				<button type='submit' form='modifyUserForm' value='Submit' class='btn'>submit</button>
+			-->
 	</div>
 </body>
 </html>
