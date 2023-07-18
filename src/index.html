@@ -7,30 +7,27 @@
 	<title>Pet Shop</title>
 	
 	<link rel="stylesheet" type="text/css" href="css/nav_bar.css">
-	<link rel="stylesheet" type="text/css" href="css/margin.css">
 
-	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <body>
-	<!-- header-->
-	<header id='header'>
-		<!-- Logo -->
-		<div id='logo'>
-			<div class="circleL"></div> <div class="circleR"></div>
-			<div class="logoText"><span>Pet</span> <span>Shop</span></div>
+	<!-- Rework navigation bar-->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div id='logo' class="navbar-header">
+				<div class="navbar-brand">Pet Shop</div>
+			</div>
+			<div id='navList' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li role="presentation" class="active"><a href="index.html">Home</a></li>
+					<li role="presentation"><a href='html/registration.html'>Registration</a></li>
+					<li role="presentation"><a href='html/election.html'>Election</a></li>
+					<li role="presentation"><a href='html/history.html'>Adoption History</a></li>
+				</ul>
+			</div>
 		</div>
-		<!-- Nav bar -->
-		<div id='navBar'>
-			<ul>
-				<li><a class='active' href='index.html'>Home</a></li>
-				<li><a href='html/registration.html'>Registration</a></li>
-				<li><a href='html/election.html'>Election</a></li>
-				<li><a href='#'>Feature x</a></li>
-				<li><a href='#'>Feature y</a></li>
-			</ul>
-		</div>
-	</header>
+	</nav>
 
 	<div class="container">
 		<div class="row">
@@ -52,82 +49,28 @@
 			<div class="panel panel-default panel-pet">
 				<div class="panel-heading">
 					<h3 class="panel-title">Scrappy</h3>
+					<div>Adopted time</div>
 				</div>
 				<div class="panel-body">
 				<img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
 				<br/><br/>
 				<strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
 				<strong>Age</strong>: <span class="pet-age">3</span><br/>
-				<strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
+				<strong>Vaccinated</strong>: <span class="pet-vaccination">Yes</span><br/>
+				<strong>Neutered</strong>: <span class="pet-neutering">Yes</span><br/><br/>
 				<button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
-				</div>
-		 	</div>
-		</div>
-
-		<div class="col-sm-6 col-md-4 col-lg-3">
-			<div class="panel panel-default panel-pet">
-				<div class="panel-heading">
-					<h3 class="panel-title">Scrappy</h3>
-				</div>
-				<div class="panel-body">
-				<img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
-				<br/><br/>
-				<strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
-				<strong>Age</strong>: <span class="pet-age">3</span><br/>
-				<strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
-				<button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
-				</div>
-		 	</div>
-		</div>
-
-		<div class="col-sm-6 col-md-4 col-lg-3">
-			<div class="panel panel-default panel-pet">
-				<div class="panel-heading">
-					<h3 class="panel-title">Scrappy</h3>
-				</div>
-				<div class="panel-body">
-				<img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
-				<br/><br/>
-				<strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
-				<strong>Age</strong>: <span class="pet-age">3</span><br/>
-				<strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
-				<button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
-				</div>
-		 	</div>
-		</div>
-
-		<div class="col-sm-6 col-md-4 col-lg-3">
-			<div class="panel panel-default panel-pet">
-				<div class="panel-heading">
-					<h3 class="panel-title">Scrappy</h3>
-				</div>
-				<div class="panel-body">
-				<img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
-				<br/><br/>
-				<strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
-				<strong>Age</strong>: <span class="pet-age">3</span><br/>
-				<strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
-				<button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
-				</div>
-		 	</div>
-		</div>
-
-		<div class="col-sm-6 col-md-4 col-lg-3">
-			<div class="panel panel-default panel-pet">
-				<div class="panel-heading">
-					<h3 class="panel-title">Scrappy</h3>
-				</div>
-				<div class="panel-body">
-				<img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
-				<br/><br/>
-				<strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
-				<strong>Age</strong>: <span class="pet-age">3</span><br/>
-				<strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
-				<button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
+				<button class="btn btn-default" type="button" data-id="1">Feed</button>
+				<button class="btn btn-default" type="button" data-id="2">Vaccinate</button>
+				<button class="btn btn-default" type="button" data-id="3">Neuter</button>
+				<button class="btn btn-default" type="button" data-id="4">Spray</button>
 				</div>
 		 	</div>
 		</div>
 	</div>
 
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </body>
 </html>
