@@ -1,0 +1,162 @@
+[
+  {
+    "id": 0,
+    "name": "Frieda",
+    "picture": "images/corgi.jpg",
+    "age": 3,
+    "breed": "Corgi",
+    "adopted": true,
+    "neutered": true,
+    "vaccinated": true
+  },
+  {
+    "id": 1,
+    "name": "Gina",
+    "picture": "images/bedlington.jpg",
+    "age": 3,
+    "breed": "Bedlington",
+    "adopted": false,
+    "neutered": true,
+    "vaccinated": true
+  },
+  {
+    "id": 2,
+    "name": "Collins",
+    "picture": "images/german_shepherd.jpg",
+    "age": 2,
+    "breed": "German Shephard",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": true
+  },
+  {
+    "id": 3,
+    "name": "Melissa",
+    "picture": "images/chihuahua.jpg",
+    "age": 2,
+    "breed": "Chihuahua",
+    "adopted": false,
+    "neutered": true,
+    "vaccinated": false
+  },
+  {
+    "id": 4,
+    "name": "Jeanine",
+    "picture": "images/bichon.jpg",
+    "age": 2,
+    "breed": "Bichon",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 5,
+    "name": "Elvia",
+    "picture": "images/yorkshire.jpg",
+    "age": 3,
+    "breed": "Yorkshire",
+    "adopted": false,
+    "neutered": true,
+    "vaccinated": true
+  },
+  {
+    "id": 6,
+    "name": "Latisha",
+    "picture": "images/golden_retriever.jpg",
+    "age": 3,
+    "breed": "Golden Retriever",    
+    "adopted": false,
+    "neutered": true,
+    "vaccinated": true
+  },
+  {
+    "id": 7,
+    "name": "Coleman",
+    "picture": "images/husky.jpg",
+    "age": 3,
+    "breed": "Husky",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 8,
+    "name": "Nichole",
+    "picture": "images/maltese.jpg",
+    "age": 2,
+    "breed": "Maltese",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 9,
+    "name": "Fran",
+    "picture": "images/samoyed.jpg",
+    "age": 3,
+    "breed": "Samoyed",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 10,
+    "name": "Leonor",
+    "picture": "images/labrador_retriever.jpg",
+    "age": 2,
+    "breed": "Labrador Retriever",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 11,
+    "name": "Dean",
+    "picture": "images/sheltie.jpg",
+    "age": 3,
+    "breed": "Sheltie",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 12,
+    "name": "Stevenson",
+    "picture": "images/corgi.jpg",
+    "age": 3,
+    "breed": "Corgi",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 13,
+    "name": "Kristina",
+    "picture": "images/golden_retriever.jpg",
+    "age": 4,
+    "breed": "Golden Retriever",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 14,
+    "name": "Ethel",
+    "picture": "images/maltese.jpg",
+    "age": 2,
+    "breed": "Maltese",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  },
+  {
+    "id": 15,
+    "name": "Terry",
+    "picture": "images/pomeranian.jpg",
+    "age": 2,
+    "breed": "Pomeranian",
+    "adopted": false,
+    "neutered": false,
+    "vaccinated": false
+  }
+]
