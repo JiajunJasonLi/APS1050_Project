@@ -2,6 +2,11 @@ h3 {
     padding-top: 7.5px;
 }
 
+img {
+    /* width: 140px; */
+    height: 190px;
+}
+
 /* .btn-adopt {
     display: inline-block;
     float: right;
