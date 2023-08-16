@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Vote</title>
 	
-	<link rel="stylesheet" type="text/css" href="../css/nav_bar.css">
-	<link rel="stylesheet" type="text/css" href="../css/election.css">    
+	<link rel="stylesheet" type="text/css" href="../css/nav_bar.css"> 
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -37,6 +36,13 @@
                 <h1 class="text-center">Election Results</h1>
                 <hr/>
                 <br/>
+
+                <div class="row">
+                    <p id="accountBalance" class="text-center"></p>
+                    <p id="accountAddress" class="text-center"></p>
+                    <hr />
+                </div>
+
                 <div id="loader" style="display: none;">
                     <p class="text-center">Loading...</p>
                 </div>
@@ -53,7 +59,7 @@
                             </tr>
                         </thead>
                         <tbody id="candidatesResults">
-                            <tr>
+                            <tr dispaly="none">
                                 <th scope="row">1</th>
                                 <td>Scrappy</td>
                                 <td>Golden Retriever</td>
@@ -64,12 +70,11 @@
                         </tbody>
                     </table>
                     <hr/>
-                    <form onSubmit="App.castVote(); return false;">
+                    <form onSubmit="electionApp.castVote(); return false;" id="voteForm" hidden>
                         <div class="form-group">
                             <label for="candidatesSelect">Select Candidate</label>
                             <select class="form-control" id="candidatesSelect">
-                                <option value="select">Choose...</option>
-                                <option value="1">Scrappy</option>
+                                <option value="Select">Choose...</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Vote</button>
@@ -84,5 +89,8 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<script src="../js/web3.min.js"></script>
+	<script src="../js/truffle-contract.js"></script>
+	<script src="../js/election.js"></script>
 </body>
 </html>
