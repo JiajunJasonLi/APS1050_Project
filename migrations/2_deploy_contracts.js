@@ -1,5 +1,5 @@
-var Adoption = artifacts.require("./Adoption.sol");
+var PetShop = artifacts.require("./PetShop.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Adoption);
+  deployer.deploy(PetShop);
 };
