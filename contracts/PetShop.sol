@@ -12,7 +12,10 @@ contract PetShop {
         string img;
         bool adopted;
         uint256 num_of_vote;
+        // address adopter;
     }
+
+    string public functionCalled;
 
     // Store accounts that have voted
     mapping(address => bool) public voters;
@@ -27,6 +30,8 @@ contract PetShop {
     event vote_event(uint256 indexed _candidateId);
 
     event register_event(uint256 indexed pet_count);
+
+    event service_event(uint256 indexed petId);
 
     constructor() public {
         add_pet('Frieda', 'Corgi', 3, 'images/Corgi.jpg');
@@ -78,17 +83,23 @@ contract PetShop {
         emit vote_event(_candidateId);
     }
 
-    // function adopt(uint petId) public returns (uint) {
-    //     require(petId >= 0 && petId <= 15);
-    //     adopters[petId] = msg.sender;
-    //     return petId;
-    // }
+    function adopt(uint petId) public returns (uint) {
+        require(petId >= 0 && petId < pet_count);
+        
+        pets[petId].adopted = true;
+        // adopters[petId] = msg.sender;
+        return petId;
+    }
 
+    function getAdopters() public view returns (address[] memory) {
+        return adopters;
+    }
+    
+    function service(uint petId, string memory _serviceItem) public payable {
+        // Check which service
 
-
-    // function getAdopters() public view returns (address[] memory) {
-    //     return adopters;
-    // }
+        emit service_event(petId);
+    }
 
     // function getPets() public view returns (Pet[] memory) {
     //     return pets;
