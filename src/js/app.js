@@ -36,20 +36,32 @@ App = {
         $.getJSON('PetShop.json', function (petShop) {
             // Get the necessary contract artifact file and instantiate it with truffle-contract
             App.contracts.PetShop = TruffleContract(petShop);
-    
             // Set the provider for our contract
             App.contracts.PetShop.setProvider(App.web3Provider);
 
             // Listen for event and render the page?
-            // App.listenForEvnets();
+            // App.listenForEvents();
             return App.render();
-
-            // Use our contract to retrieve and mark the adopted pets
-            // return App.markAdopted();
         });
-    
-        // return App.bindEvents();
+
+        return App.bindEvents();
     },
+
+    bindEvents: function () {
+        $(document).on('click', '.btn-adopt', App.handleAdopt);
+    },
+
+    // listenForEvents: function() {
+    //     App.contracts.PetShop.deployed().then(function (instance) {
+    //         instance.service_event({
+    //             fromBlock: 0,
+    //             toBlock: 'latest'
+    //         }).watch(function (error, event) {
+    //             console.log("service triggered", event);
+    //             App.render();
+    //         });
+    //     });
+    // },
 
     render: function () {
         var petShopInstance;
@@ -79,9 +91,7 @@ App = {
             }
             Promise.all(pet_array).then(function(values) {
                 var petsRow = $('#petsRow');
-                var petTemplate = $('#petTemplate');
                 petsRow.empty();
-
                 for (var i = 0; i < pet_count; i++) {
                     var id = values[i][0]
                     var name = values[i][1];
@@ -89,83 +99,107 @@ App = {
                     var age = values[i][3];
                     var img = values[i][4];
                     var adopted = values[i][5];
-                    var winner = values[i][6];
+                    var num_of_vote = values[i][6];
 
                     // Show the not adopted pet in the page
                     if (adopted == false) {
-                        petTemplate.find('.panel-title').text(name);
-                        petTemplate.find('img').attr('src', img);
-                        petTemplate.find('.pet-breed').text(breed);
-                        petTemplate.find('.pet-age').text(age);
-                        petTemplate.find('.btn-adopt').attr('data-id', id);
+                        // Choose to not use pet template for loading pet information
+                        petTemplate = "";
+                        // Everything until name and button id
+                        petTemplate += "<div class=\"col-sm-6 col-md-4 col-lg-3\"> <div class=\"panel panel-default panel-pet\"> <div class=\"panel-heading clearfix\">";
 
-                        petsRow.append(petTemplate.html());
+                        // Add the name and assign data id to the button
+                        petTemplate += "<h3 class=\"panel-title pull-left\">" + name + "</h3>";
+                        petTemplate += "<button class=\"btn btn-default btn-adopt pull-right\" type=\"button\" data-id=\"" + id + "\">Adopt</button></div>";
+
+
+                        // Add the panel body and image
+                        petTemplate += "<div class=\"panel-body\">";
+                        petTemplate += "<img alt=\"140x140\" data-src=\"holder.js/140x140\" class=\"img-rounded img-center\" style=\"width: 100%;\" src=\"" + img + "\" data-holder-rendered=\"true\"></img> <br/><br/>";
+
+                        // Add Pet information
+                        petTemplate += "<strong>Breed:</strong> <span class=\"pet-breed\">" + breed + "</span><br/>";
+                        petTemplate += "<strong>Age:</strong> <span class=\"pet-age\">" + age + "</span><br/>";
+
+                        // Add the service form
+                        petTemplate += "<form onSubmit=\"App.castService(this); return false;\" class=\"form-inline\">";
+                        petTemplate += "<div class=\"form-group\">";
+                        petTemplate += "<label class=\"my-1 mr-2\" for=\"inlineFormServiceSelect\">Services: </label> </div>";
+
+                        petTemplate += "<div class=\"form-group\"> <select class=\"form-control my-1 mr-sm-2\" id=\"inlineFormServiceSelect\">";
+                        petTemplate += "<option value=\"Select\">Choose...</option><option value=\"feed\">Feed: 2ETH</option> <option value=\"toy\">Toy: 5ETH</option> <option value=\"spray\">Spray: 15ETH</option> </select></div>";
+                        petTemplate += "<button class=\"btn btn-service btn-primary my-1\" type=\"submit\" data-id=\"" + id + "\">Confirm</button>";
+                        petTemplate += "</form></div></div>";
+
+                        petsRow.append(petTemplate);
                     }
                 }
-
-                
             });
-        }).catch(function (err){
-            console.warn(err);
+        }).then(function () {
+            console.log('render success');
+        }).catch(function (error){
+            console.log(error);
         });
     },
 
-    // bindEvents: function () {
-    //     $(document).on('click', '.btn-adopt', App.handleAdopt);
-    // },
+    handleAdopt: function (event) {
+        event.preventDefault();
+    
+        var petId = parseInt($(event.target).data('id'));
+    
+        App.contracts.PetShop.deployed().then(function (instance) {
+            return instance.adopt(petId, { from: App.account });
+        }).then(function (result) {
+            window.alert('Pet adopted successfully');
+            App.render();
+        }).catch(function (err) {
+            console.log(err.message);
+        });
+    },
 
-    // markAdopted: function (adopters, account) {
-    //     var adoptionInstance;
-    
-    //     App.contracts.Adoption.deployed().then(function (instance) {
-    //         adoptionInstance = instance;
-    //         console.log(adoptionInstance);
-    //         return adoptionInstance.getAdopters.call();
-    //     }).then(function (adopters) {
-    //         console.log(adopters);
-    //         for (i = 0; i < adopters.length; i++) {
-    //             if (adopters[i] !== '0x0000000000000000000000000000000000000000') {
-    //                 $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
-    //                 // Update the json file of the adopted pet so it will show in the history instead of in the shop
-    //                 // $('.panel-pet').eq(i).remove();  
-    //             }
-    //         }
-    //         console.log($('.panel-pet'));
-    //     }).catch(function (err) {
-    //       console.log(err.message);
-    //     });
-    // },
+    castService: function (input) {
 
-    // handleAdopt: function (event) {
-    //     event.preventDefault();
-    
-    //     var petId = parseInt($(event.target).data('id'));
-    
-    //     var adoptionInstance;
-    
-    //     web3.eth.getAccounts(function (error, accounts) {
-    //         if (error) {
-    //             console.log(error);
-    //         }
-    
-    //         var account = accounts[0];
-    
-    //         App.contracts.Adoption.deployed().then(function (instance) {
-    //             adoptionInstance = instance;
-    
-    //             // Execute adopt as a transaction by sending account
-    //             return adoptionInstance.adopt(petId, { from: account });
-    //         }).then(function (result) {
-    //             return App.markAdopted();
-    //         }).catch(function (err) {
-    //             console.log(err.message);
-    //         });
-    //     });
-    // }
+        var petId = input.getElementsByTagName('button')[0].attributes[2].value;
+        var serviceItem = input.getElementsByTagName('select')[0].value;
+        var ethValue;
+
+        if (serviceItem == 'Select') {
+            window.alert('Please select the service');
+        } else {
+            if (serviceItem == 'feed') {
+                ethValue = 2;
+            } else if (serviceItem == 'toy') {
+                ethValue = 5;
+            } else if (serviceItem == 'spray') {
+                ethValue = 15;
+            }
+
+            App.contracts.PetShop.deployed().then(function (instance) { 
+                // Get the pet information to see if the service value can be halved
+                pet = instance.pets(petId);
+
+                Promise.all([pet]).then(function(values) {
+                    var num_of_vote = values[0][6];
+
+                    if (num_of_vote >= 5) {
+                        ethValue *= 0.5;
+                    }
+                    return instance.service(petId, serviceItem, { from: App.account, value: window.web3.toWei(ethValue, 'ether')});
+                }).then(function () {
+                    window.alert('Pet serviced successfully');
+                    App.render();
+                }).catch(function (error) {
+                    console.warn(error);
+                })
+            });
+        }
+
+    }
+
 };
 
 $(function() {
     $(window).on('load', function() {
-      App.init();
+        App.init();
     });
 });
