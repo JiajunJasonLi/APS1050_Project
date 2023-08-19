@@ -40,7 +40,7 @@ App = {
             App.contracts.PetShop.setProvider(App.web3Provider);
 
             // Listen for event and render the page?
-            // App.listenForEvents();
+            App.listenForEvents();
             return App.render();
         });
 
@@ -51,17 +51,17 @@ App = {
         $(document).on('click', '.btn-adopt', App.handleAdopt);
     },
 
-    // listenForEvents: function() {
-    //     App.contracts.PetShop.deployed().then(function (instance) {
-    //         instance.service_event({
-    //             fromBlock: 0,
-    //             toBlock: 'latest'
-    //         }).watch(function (error, event) {
-    //             console.log("service triggered", event);
-    //             App.render();
-    //         });
-    //     });
-    // },
+    listenForEvents: function() {
+        App.contracts.PetShop.deployed().then(function (instance) {
+            instance.service_event({
+                fromBlock: 0,
+                toBlock: 'latest'
+            }).watch(function (error, event) {
+                console.log("service triggered", event);
+                App.render();
+            });
+        });
+    },
 
     render: function () {
         var petShopInstance;
@@ -99,7 +99,9 @@ App = {
                     var age = values[i][3];
                     var img = values[i][4];
                     var adopted = values[i][5];
-                    var num_of_vote = values[i][6];
+                    var vaccinated = values[i][6];
+                    var neutered = values[i][7];
+                    var num_of_vote = values[i][8];
 
                     // Show the not adopted pet in the page
                     if (adopted == false) {
@@ -121,13 +123,37 @@ App = {
                         petTemplate += "<strong>Breed:</strong> <span class=\"pet-breed\">" + breed + "</span><br/>";
                         petTemplate += "<strong>Age:</strong> <span class=\"pet-age\">" + age + "</span><br/>";
 
+                        if(vaccinated == false) {
+                            petTemplate += "<strong>Vaccinated:</strong> <span class=\"pet-vaccination\">No</span><br/>";
+                        } else {
+                            petTemplate += "<strong>Vaccinated:</strong> <span class=\"pet-vaccination\">Yes</span><br/>";
+                        }
+
+                        if(neutered == false) {
+                            petTemplate += "<strong>Neutered:</strong> <span class=\"pet-neutering\">No</span><br/>";
+                        } else {
+                            petTemplate += "<strong>Neutered:</strong> <span class=\"pet-neutering\">Yes</span><br/>";
+                        }
+
                         // Add the service form
                         petTemplate += "<form onSubmit=\"App.castService(this); return false;\" class=\"form-inline\">";
                         petTemplate += "<div class=\"form-group\">";
                         petTemplate += "<label class=\"my-1 mr-2\" for=\"inlineFormServiceSelect\">Services: </label> </div>";
 
                         petTemplate += "<div class=\"form-group\"> <select class=\"form-control my-1 mr-sm-2\" id=\"inlineFormServiceSelect\">";
-                        petTemplate += "<option value=\"Select\">Choose...</option><option value=\"feed\">Feed: 2ETH</option> <option value=\"toy\">Toy: 5ETH</option> <option value=\"spray\">Spray: 15ETH</option> </select></div>";
+                        petTemplate += "<option value=\"Select\">Choose...</option><option value=\"feed\">Feed: 1ETH</option> <option value=\"toy\">Toy: 2ETH</option>";
+                        
+                        // If not vaccinated
+                        if(vaccinated == false) {
+                            petTemplate += "<option value=\"vaccinate\">Vaccinate: 5ETH</option>";
+                        }
+
+                        // If not neutered
+                        if(neutered == false) {
+                            petTemplate += "<option value=\"neuter\">Neuter: 10ETH</option>";
+                        }
+
+                        petTemplate +="<option value=\"spray\">Spray: 15ETH</option></select></div>";
                         petTemplate += "<button class=\"btn btn-service btn-primary my-1\" type=\"submit\" data-id=\"" + id + "\">Confirm</button>";
                         petTemplate += "</form></div></div>";
 
@@ -136,7 +162,7 @@ App = {
                 }
             });
         }).then(function () {
-            console.log('render success');
+
         }).catch(function (error){
             console.log(error);
         });
@@ -161,17 +187,28 @@ App = {
 
         var petId = input.getElementsByTagName('button')[0].attributes[2].value;
         var serviceItem = input.getElementsByTagName('select')[0].value;
+        
         var ethValue;
+        var serviceId;
 
         if (serviceItem == 'Select') {
             window.alert('Please select the service');
         } else {
             if (serviceItem == 'feed') {
-                ethValue = 2;
+                ethValue = 1;
+                serviceId = 0;
             } else if (serviceItem == 'toy') {
+                ethValue = 2;
+                serviceId = 1;
+            } else if (serviceItem == 'vaccinate') {
                 ethValue = 5;
+                serviceId = 2;
+            } else if (serviceItem == 'neuter') {
+                ethValue = 10;
+                serviceId = 3;
             } else if (serviceItem == 'spray') {
                 ethValue = 15;
+                serviceId = 4;
             }
 
             App.contracts.PetShop.deployed().then(function (instance) { 
@@ -179,12 +216,12 @@ App = {
                 pet = instance.pets(petId);
 
                 Promise.all([pet]).then(function(values) {
-                    var num_of_vote = values[0][6];
+                    var num_of_vote = values[0][8];
 
                     if (num_of_vote >= 5) {
                         ethValue *= 0.5;
                     }
-                    return instance.service(petId, serviceItem, { from: App.account, value: window.web3.toWei(ethValue, 'ether')});
+                    return instance.service(petId, serviceId, { from: App.account, value: window.web3.toWei(ethValue, 'ether')});
                 }).then(function () {
                     window.alert('Pet serviced successfully');
                     App.render();

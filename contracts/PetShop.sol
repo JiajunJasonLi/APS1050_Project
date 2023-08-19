@@ -11,6 +11,8 @@ contract PetShop {
         uint256 age;
         string img;
         bool adopted;
+        bool vaccinated;
+        bool neutered;
         uint256 num_of_vote;
         // address adopter;
     }
@@ -25,7 +27,9 @@ contract PetShop {
     Pet[] public pets;
     address[] public adopters;
 
-    uint public pet_count = 0;
+    uint256 public pet_count = 0;
+    uint256 private vaccinate_service = 2;
+    uint256 private neuter_service = 3;
 
     event vote_event(uint256 indexed _candidateId);
 
@@ -34,34 +38,34 @@ contract PetShop {
     event service_event(uint256 indexed petId);
 
     constructor() public {
-        add_pet('Frieda', 'Corgi', 3, 'images/Corgi.jpg');
-        add_pet('Gina', 'Bedlington', 3, 'images/Bedlington.jpg');
-        add_pet('Collins', 'German Shephard', 2, 'images/German Shepherd.jpg');
-        add_pet('Melissa', 'Chihuahua', 2, 'images/Chihuahua.jpg');
-        add_pet('Jeanine', 'Bichon', 2, 'images/Bichon.jpg');
-        add_pet('Elvia', 'Yorkshire', 3, 'images/Yorkshire.jpg');
-        add_pet('Latisha', 'Golden Retriever', 3, 'images/Golden Retriever.jpg');
-        add_pet('Coleman', 'Husky', 3, 'images/Husky.jpg');
-        add_pet('Nichole', 'Maltese', 2, 'images/Maltese.jpg');
-        add_pet('Fran', 'Samoyed', 5, 'images/Samoyed.jpg');
-        add_pet('Leonor', 'Labrador Retriever', 1, 'images/Labrador Retriever.jpg');
-        add_pet('Dean', 'Sheltie', 4, 'images/Sheltie.jpg');
-        add_pet('Stevenson', 'Corgi', 7, 'images/Corgi.jpg');
-        add_pet('Kristina', 'Golden Retriever', 4, 'images/Golden Retriever.jpg');
-        add_pet('Ethel', 'Maltese', 2, 'images/Maltese.jpg');
-        add_pet('Terry', 'Pomeranian', 2, 'images/Pomeranian.jpg');
+        add_pet('Frieda', 'Corgi', 3, 'images/Corgi.jpg', true, true);
+        add_pet('Gina', 'Bedlington', 3, 'images/Bedlington.jpg', true, true);
+        add_pet('Collins', 'German Shephard', 2, 'images/German Shepherd.jpg', true, false);
+        add_pet('Melissa', 'Chihuahua', 2, 'images/Chihuahua.jpg', false, true);
+        add_pet('Jeanine', 'Bichon', 2, 'images/Bichon.jpg', false, false);
+        add_pet('Elvia', 'Yorkshire', 3, 'images/Yorkshire.jpg', true, true);
+        add_pet('Latisha', 'Golden Retriever', 3, 'images/Golden Retriever.jpg', true, true);
+        add_pet('Coleman', 'Husky', 3, 'images/Husky.jpg', false, false);
+        add_pet('Nichole', 'Maltese', 2, 'images/Maltese.jpg', false, false);
+        add_pet('Fran', 'Samoyed', 5, 'images/Samoyed.jpg', false, false);
+        add_pet('Leonor', 'Labrador Retriever', 1, 'images/Labrador Retriever.jpg', false, false);
+        add_pet('Dean', 'Sheltie', 4, 'images/Sheltie.jpg', false, false);
+        add_pet('Stevenson', 'Corgi', 7, 'images/Corgi.jpg', false, false);
+        add_pet('Kristina', 'Golden Retriever', 4, 'images/Golden Retriever.jpg', false, false);
+        add_pet('Ethel', 'Maltese', 2, 'images/Maltese.jpg', false, false);
+        add_pet('Terry', 'Pomeranian', 2, 'images/Pomeranian.jpg', false, false);
     }
 
     // Use memory or direct variables?
-    function add_pet(string memory _name, string memory _breed, uint256 age, string memory _img) private {
+    function add_pet(string memory _name, string memory _breed, uint256 age, string memory _img, bool vaccinated, bool neutered) private {
         uint256 id = pet_count;
         // Adding new pet for setting up the status of each pet
-        pets.push(Pet(id, _name, _breed, age, _img, false, 0));
+        pets.push(Pet(id, _name, _breed, age, _img, false, vaccinated, neutered, 0));
         pet_count++;
     }
 
-    function register(string memory _name, string memory _breed, uint256 age, string memory _img) public {
-        add_pet(_name, _breed, age, _img);
+    function register(string memory _name, string memory _breed, uint256 age, string memory _img, bool vaccinated, bool neutered) public {
+        add_pet(_name, _breed, age, _img, vaccinated, neutered);
 
         emit register_event(pet_count);
     }
@@ -95,8 +99,15 @@ contract PetShop {
         return adopters;
     }
     
-    function service(uint petId, string memory _serviceItem) public payable {
+    function service(uint petId, uint serviceId) public payable {
         // Check which service
+        if (serviceId == vaccinate_service) {
+            // Change the vaccinate status of the pet
+            pets[petId].vaccinated = true;
+        } else if (serviceId == neuter_service) {
+            // Change the neuter status of the pet
+            pets[petId].neutered = true;
+        }
 
         emit service_event(petId);
     }
