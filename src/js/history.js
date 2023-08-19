@@ -145,7 +145,7 @@ historyApp = {
             window.alert('Pet returned successfully');
             historyApp.render();
         }).catch(function (error) {
-            console.warn(error);
+            window.alert('Return failed');
         });
     }
 };

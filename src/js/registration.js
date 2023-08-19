@@ -101,7 +101,7 @@ regApp = {
                 window.alert('Registration Success');
                 setTimeout(function() { 
                     location.reload();
-                }, 3000); 
+                }, 2000); 
             }).catch(function (error) {
                 console.error(error);
             })
