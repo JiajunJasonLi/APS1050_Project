@@ -112,6 +112,10 @@ App = {
 
                         // Add the name and assign data id to the button
                         petTemplate += "<h3 class=\"panel-title pull-left\">" + name + "</h3>";
+
+                        if(num_of_vote >= 5) {
+                            petTemplate += "<span class=\"glyphicon glyphicon-thumbs-up\"></span>";
+                        }
                         petTemplate += "<button class=\"btn btn-default btn-adopt pull-right\" type=\"button\" data-id=\"" + id + "\">Adopt</button></div>";
 
 
@@ -155,7 +159,7 @@ App = {
 
                         petTemplate +="<option value=\"spray\">Spray: 15ETH</option></select></div>";
                         petTemplate += "<button class=\"btn btn-service btn-primary my-1\" type=\"submit\" data-id=\"" + id + "\">Confirm</button>";
-                        petTemplate += "</form></div></div>";
+                        petTemplate += "</form></div></div></div>";
 
                         petsRow.append(petTemplate);
                     }

@@ -18,7 +18,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div id='logo' class="navbar-header">
-				<div class="navbar-brand">Reputable Pet Shop</div>
+				<div class="navbar-brand"><span class="glyphicon glyphicon-bitcoin"></span> Reputable Pet Shop</div>
 			</div>
 			<div id='navList' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
@@ -41,8 +41,14 @@
 				<br/>
 		  	</div>
 		</div>
+
+		<div class="row">
+			<p id="accountBalance" class="text-center"></p>
+			<p id="accountAddress" class="text-center"></p>
+			<hr />
+		</div>
   
-		<form id='registrationForm'>
+		<form onSubmit="regApp.castRegister(); return false;" id='registrationForm'>
 			<div class="form-group">
 				<label>Name:</label>
 				<input type='text' class="form-control" id='nameInput' placeholder="Name" required>
@@ -50,7 +56,7 @@
 			<div class="form-group">
 				<label>Breed:</label>
 				<select class="form-control" id="breedSelect">
-					<option value="select">Choose...</option>
+					<option value="Select">Choose...</option>
 					<option value="German Shepherd">German Shepherd</option>
 					<option value="Labrador Retriever">Labrador Retriever</option>
 					<option value="Golden Retriever">Golden Retriever</option>
@@ -69,7 +75,7 @@
 			<div class="form-group">
 				<label>Age:</label>
 				<select class="form-control" id="ageSelect">
-					<option value="select">Choose...</option>
+					<option value="Select">Choose...</option>
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -81,17 +87,13 @@
 					<option value="8">8</option>
 					<option value="9">9</option>
 					<option value="10">10</option>
-					<option value=">10">More than 10</option>
 				</select>
-			</div> 
-			<!-- <div class="inputBlock">
-				<div>Birthday:</div>
-				<input type='date' id='birthdayInput' placeholder="Birthday" required>
-			</div> -->
+			</div>
+
 			<div class="form-group">
 				<label>Vaccination:</label>
 				<select class="form-control" id="vaccinationSelect">
-					<option value="select">Choose...</option>
+					<option value="Select">Choose...</option>
 					<option value="yes">Yes</option>
 					<option value="no">No</option>
 				</select>
@@ -100,14 +102,13 @@
 			<div class="form-group">
 				<label>Neutered:</label>
 				<select class="form-control" id="neuterSelect">
-					<option value="select">Choose...</option>
+					<option value="Select">Choose...</option>
 					<option value="yes">Yes</option>
 					<option value="no">No</option>
 				</select>
 			</div>
-			
+			<button type='submit' class='btn btn-primary'>Submit</button>
 		</form>
-		<button class='btn btn-primary'>submit</button>
 	</div>
 
 	</div>
@@ -116,5 +117,8 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<script src="../js/web3.min.js"></script>
+	<script src="../js/truffle-contract.js"></script>
+	<script src="../js/registration.js"></script>
 </body>
 </html>

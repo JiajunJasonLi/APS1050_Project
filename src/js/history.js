@@ -44,7 +44,11 @@ historyApp = {
             return historyApp.render();
 
         });
+        return historyApp.bindEvents();
+    },
 
+    bindEvents: function () {
+        $(document).on('click', '.btn-return', historyApp.handleReturn);
     },
 
     render: function() {
@@ -83,22 +87,63 @@ historyApp = {
                     var name = values[i][1];
                     var breed = values[i][2];
                     var age = values[i][3];
-                    var img = values[i][4];
+                    var img = '..\/' + values[i][4];
                     var adopted = values[i][5];
-
+                    var vaccinated = values[i][6];
+                    var neutered = values[i][7];
+                    
                     // Show the not adopted pet in the page
                     if (adopted == true) {
-                        petTemplate.find('.panel-title').text(name);
-                        petTemplate.find('img').attr('src', '..\/' + img);
-                        petTemplate.find('.pet-breed').text(breed);
-                        petTemplate.find('.pet-age').text(age);
-                        petTemplate.find('.btn-adopt').attr('data-id', id);
+                        petTemplate = "";
+                        
+                        // Everything until name and button id
+                        petTemplate += "<div class=\"col-sm-6 col-md-4 col-lg-3\"> <div class=\"panel panel-default panel-pet\"> <div class=\"panel-heading clearfix\">";
 
-                        petsRow.append(petTemplate.html());
+                        // Add the name and assign data id to the button
+                        petTemplate += "<h3 class=\"panel-title pull-left\">" + name + "</h3>";
+                        petTemplate += "<button class=\"btn btn-default btn-return pull-right\" type=\"button\" data-id=\"" + id + "\">Return</button></div>";
+
+                        // Add the panel body and image
+                        petTemplate += "<div class=\"panel-body\">";
+                        petTemplate += "<img alt=\"140x140\" data-src=\"holder.js/140x140\" class=\"img-rounded img-center\" style=\"width: 100%;\" src=\"" + img + "\" data-holder-rendered=\"true\"></img> <br/><br/>";
+
+                        // Add Pet information
+                        petTemplate += "<strong>Breed:</strong> <span class=\"pet-breed\">" + breed + "</span><br/>";
+                        petTemplate += "<strong>Age:</strong> <span class=\"pet-age\">" + age + "</span><br/>";
+
+                        if(vaccinated == false) {
+                            petTemplate += "<strong>Vaccinated:</strong> <span class=\"pet-vaccination\">No</span><br/>";
+                        } else {
+                            petTemplate += "<strong>Vaccinated:</strong> <span class=\"pet-vaccination\">Yes</span><br/>";
+                        }
+
+                        if(neutered == false) {
+                            petTemplate += "<strong>Neutered:</strong> <span class=\"pet-neutering\">No</span><br/>";
+                        } else {
+                            petTemplate += "<strong>Neutered:</strong> <span class=\"pet-neutering\">Yes</span><br/>";
+                        }
+
+                        petTemplate += "</div></div></div>";
+
+                        petsRow.append(petTemplate);
                     }
                 }
                 
             });
+        }).catch(function (error) {
+            console.warn(error);
+        });
+    },
+
+    handleReturn: function (event) {
+        event.preventDefault();
+    
+        var petId = parseInt($(event.target).data('id'));
+        historyApp.contracts.PetShop.deployed().then(function (instance) {
+            return instance.pet_return(petId, { from: historyApp.account, value: window.web3.toWei(1, 'ether')});
+        }).then(function(result) {
+            window.alert('Pet returned successfully');
+            historyApp.render();
         }).catch(function (error) {
             console.warn(error);
         });

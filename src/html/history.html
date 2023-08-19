@@ -17,7 +17,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div id='logo' class="navbar-header">
-				<div class="navbar-brand">Reputable Pet Shop</div>
+				<div class="navbar-brand"><span class="glyphicon glyphicon-bitcoin"></span> Reputable Pet Shop</div>
 			</div>
 			<div id='navList' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
@@ -44,24 +44,27 @@
 			<p id="accountAddress" class="text-center"></p>
 			<hr />
 		</div>
-	</div>
 
-	<div id="petsRow" class="row">
-		  <!-- PETS LOAD HERE -->
+		<div id="petsRow" class="row">
+			<!-- PETS LOAD HERE -->
+		</div>
 	</div>
 
     <div id="petTemplate" style="display: none;">
 	<!-- <div id="petTemplate"> -->
 		<div class="col-sm-6 col-md-4 col-lg-3">
 			<div class="panel panel-default panel-pet">
-				<div class="panel-heading">
-					<h3 class="panel-title">Loki</h3>
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title pull-left">Loki</h3>
+					<button class="btn btn-default btn-return pull-right" type="button" data-id="0">Return</button>
 				</div>
 				<div class="panel-body">
 				<img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
 				<br/><br/>
 				<strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
 				<strong>Age</strong>: <span class="pet-age">2</span><br/>
+				<strong>Vaccinated</strong>: <span class="pet-vaccination">Yes</span><br/>
+				<strong>Neutered</strong>: <span class="pet-neutering">Yes</span><br/>
 				</div>
 		 	</div>
 		</div>

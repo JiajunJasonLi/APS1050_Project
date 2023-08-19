@@ -14,7 +14,7 @@ contract PetShop {
         bool vaccinated;
         bool neutered;
         uint256 num_of_vote;
-        // address adopter;
+        address adopter;
     }
 
     string public functionCalled;
@@ -60,7 +60,7 @@ contract PetShop {
     function add_pet(string memory _name, string memory _breed, uint256 age, string memory _img, bool vaccinated, bool neutered) private {
         uint256 id = pet_count;
         // Adding new pet for setting up the status of each pet
-        pets.push(Pet(id, _name, _breed, age, _img, false, vaccinated, neutered, 0));
+        pets.push(Pet(id, _name, _breed, age, _img, false, vaccinated, neutered, 0, address(0)));
         pet_count++;
     }
 
@@ -87,11 +87,22 @@ contract PetShop {
         emit vote_event(_candidateId);
     }
 
-    function adopt(uint petId) public returns (uint) {
+    function adopt(uint256 petId) public returns (uint256) {
         require(petId >= 0 && petId < pet_count);
         
         pets[petId].adopted = true;
-        // adopters[petId] = msg.sender;
+        pets[petId].adopter = msg.sender;
+        return petId;
+    }
+
+    function pet_return(uint256 petId) public payable returns (uint256) {
+        require(petId >= 0 && petId < pet_count);
+
+        // Need to make sure the account that return is the same account that adopt
+        require(pets[petId].adopter == msg.sender);
+
+        pets[petId].adopted = false;
+        pets[petId].adopter = address(0);
         return petId;
     }
 

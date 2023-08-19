@@ -97,7 +97,7 @@ electionApp = {
                     var age = values[i][3];
                     var img = values[i][4].replace(' ', '%20');
                     var adopted = values[i][5];
-                    var num_of_vote = values[i][6];
+                    var num_of_vote = values[i][8];
 
                     if (adopted == false) {
                         var candidateTemplete = "<tr><th scope=\"row\">" + id + "</th><td>" + name + "</td><td>" + breed + "</td><td>" + age + "</td><td><img src=..\/" + img + " class=\"img-rounded img-center\" border=3 height=100 width=100></img></td><td>" + num_of_vote + "</td></tr>";
@@ -117,7 +117,7 @@ electionApp = {
             }
             return electionInstance.regList(electionApp.account);
         }).then(function () {
-            console.log('test');
+
         }).catch(function (error) {
             console.warn(error);
         });
@@ -126,7 +126,6 @@ electionApp = {
 
     castVote: function () {
         var candidateId = $('#candidatesSelect').val();
-        console.log(candidateId)
 
         if(candidateId == 'Select') {
             window.alert('Please select the candidate');
@@ -135,7 +134,6 @@ electionApp = {
                 return instance.vote(candidateId, { from: electionApp.account });
             }).then(function (result) {
                 window.alert('Vote Success');
-                // window.location.reload();
             }).catch(function (error) {
                 console.error(error);
             })
