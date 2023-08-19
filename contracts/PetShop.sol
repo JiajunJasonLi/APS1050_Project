@@ -3,7 +3,6 @@ pragma solidity ^0.5.1;
 // Integrate everything in a single contract
 
 contract PetShop {
-    // Currently emulate what is in the JSON file, maybe cut neuter/vaccinate?
     struct Pet {
         uint256 id;
         string name;
@@ -17,15 +16,10 @@ contract PetShop {
         address adopter;
     }
 
-    string public functionCalled;
-
     // Store accounts that have voted
     mapping(address => bool) public voters;
 
-    mapping(address => bool) public regList;
-
     Pet[] public pets;
-    address[] public adopters;
 
     uint256 public pet_count = 0;
     uint256 private vaccinate_service = 2;
@@ -105,10 +99,6 @@ contract PetShop {
         pets[petId].adopter = address(0);
         return petId;
     }
-
-    function getAdopters() public view returns (address[] memory) {
-        return adopters;
-    }
     
     function service(uint petId, uint serviceId) public payable {
         // Check which service
@@ -122,9 +112,5 @@ contract PetShop {
 
         emit service_event(petId);
     }
-
-    // function getPets() public view returns (Pet[] memory) {
-    //     return pets;
-    // }
 
 }
